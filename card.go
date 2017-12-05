@@ -76,3 +76,60 @@ func validate(s Suit, v Value) {
 		panic(fmt.Sprintf("Unknown value %d", v))
 	}
 }
+
+func valueString(v Value) string {
+	switch v {
+	case Ace:
+		return "Ace"
+	case Two:
+		return "Two"
+	case Three:
+		return "Three"
+	case Four:
+		return "Four"
+	case Five:
+		return "Five"
+	case Six:
+		return "Six"
+	case Seven:
+		return "Seven"
+	case Eight:
+		return "Eight"
+	case Nine:
+		return "Nine"
+	case Ten:
+		return "Ten"
+	case Jack:
+		return "Jack"
+	case Queen:
+		return "Queen"
+	case King:
+		return "King"
+	default:
+		return ""
+	}
+}
+
+func (c Card) String() string {
+	return fmt.Sprintf("%s of %s", valueString(c.Value), c.Suit)
+}
+
+// Compare returns negative is c < o, 0 if c = o and positive of c > o
+func (c Card) Compare(o Card, acesLow ...bool) int {
+	if o.Value == c.Value {
+		return 0
+	}
+	aceHigh := true
+	if len(acesLow) > 0 {
+		aceHigh = acesLow[0]
+	}
+	if (c.Value == Ace && aceHigh) || (o.Value == Ace && !aceHigh) || c.Value > o.Value {
+		return 1
+	}
+	return -1
+}
+
+// Equal returns if c is the same card as o
+func (c Card) Equal(o Card) bool {
+	return c.Value == o.Value && c.Suit == o.Suit
+}
