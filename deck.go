@@ -54,6 +54,18 @@ func (d *Deck) Shuffle() {
 	}
 }
 
+// Reset resets the deck by putting all the card back that were dealt
+// shuffle must be called after or the deck will be dealt in the same order
+func (d *Deck) Reset() {
+	d.index = 0
+}
+
+// ResetAndShuffle resets and shuffles the deck for a new use
+func (d *Deck) ResetAndShuffle() {
+	d.Reset()
+	d.Shuffle()
+}
+
 // Draw draws the next card from the deck
 func (d *Deck) Draw() *Card {
 	if d.index < len(d.cards) {
@@ -93,7 +105,7 @@ func (d *Deck) DealInto(hands [][]*Card) {
 	return
 }
 
-// DealAll deals all of the cards into n piles n
+// DealAll deals all of the cards into n piles
 func (d *Deck) DealAll(n int) [][]*Card {
 	if n < 1 {
 		return nil
