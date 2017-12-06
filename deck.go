@@ -91,6 +91,15 @@ func (d *Deck) Deal(numHands, handSize int) ([][]*Card, error) {
 	return hands, nil
 }
 
+// MustDeal calls deal but panics on an error
+func (d *Deck) MustDeal(numHands, handSize int) [][]*Card {
+	cards, err := d.Deal(numHands, handSize)
+	if err != nil {
+		panic(err)
+	}
+	return cards
+}
+
 // DealInto deals cards into the hands
 func (d *Deck) DealInto(hands [][]*Card) {
 	for i := 0; i < len(hands); i++ {

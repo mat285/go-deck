@@ -11,15 +11,25 @@ type Card struct {
 // Suit is the suit of a card
 type Suit string
 
+// Color is the color of the card
+type Color string
+
+const (
+	// Red is the color red
+	Red Color = "Red"
+	// Black is the color black
+	Black Color = "Black"
+)
+
 const (
 	// Hearts is the hearts suit
-	Hearts Suit = "hearts"
+	Hearts Suit = "Hearts"
 	// Spades is the spades suit
-	Spades Suit = "spades"
+	Spades Suit = "Spades"
 	// Diamonds is the diamonds suit
-	Diamonds Suit = "diamonds"
+	Diamonds Suit = "Diamonds"
 	// Clubs is the clubs suit
-	Clubs Suit = "clubs"
+	Clubs Suit = "Clubs"
 )
 
 var suits = [4]Suit{Hearts, Spades, Diamonds, Clubs}
@@ -110,8 +120,27 @@ func valueString(v Value) string {
 	}
 }
 
+// String returns a string representation of this card
 func (c Card) String() string {
 	return fmt.Sprintf("%s of %s", valueString(c.Value), c.Suit)
+}
+
+// Color returns the color of the card
+func (c Card) Color() Color {
+	if c.Suit == Spades || c.Suit == Clubs {
+		return Black
+	}
+	return Red
+}
+
+// IsBlack returns if the card is black
+func (c Card) IsBlack() bool {
+	return c.Color() == Black
+}
+
+// IsRed returns if the card is red
+func (c Card) IsRed() bool {
+	return c.Color() == Red
 }
 
 // Compare returns negative is c < o, 0 if c = o and positive of c > o
@@ -129,7 +158,7 @@ func (c Card) Compare(o Card, acesLow ...bool) int {
 	return -1
 }
 
-// Equal returns if c is the same card as o
-func (c Card) Equal(o Card) bool {
+// Equals returns if c is the same card as o
+func (c Card) Equals(o Card) bool {
 	return c.Value == o.Value && c.Suit == o.Suit
 }
