@@ -150,7 +150,7 @@ func (c Card) Compare(o Card, acesLow ...bool) int {
 	}
 	aceHigh := true
 	if len(acesLow) > 0 {
-		aceHigh = acesLow[0]
+		aceHigh = !acesLow[0]
 	}
 	if (c.Value == Ace && aceHigh) || (o.Value == Ace && !aceHigh) || c.Value > o.Value {
 		return 1

@@ -3,7 +3,6 @@ package deck
 import (
 	"fmt"
 	"math/rand"
-	"time"
 )
 
 // Deck is a standard deck of cards
@@ -21,7 +20,7 @@ func New() *Deck {
 }
 
 func getCards() []*Card {
-	var cards []*Card
+	cards := make([]*Card, DeckSize)
 	k := 0
 	for i := 0; i < len(suits); i++ {
 		for j := 0; j < len(values); j++ {
@@ -44,13 +43,12 @@ func (d *Deck) IsEmpty() bool {
 
 // Shuffle shuffles the deck
 func (d *Deck) Shuffle() {
-	r := rand.New(rand.NewSource(time.Now().Unix()))
 	shuffled := make([]*Card, d.Size())
-	for i, j := range r.Perm(d.Size()) {
+	for i, j := range rand.Perm(d.Size()) {
 		shuffled[i] = d.cards[d.index+j]
 	}
 	for i := 0; i < len(shuffled); i++ {
-		d.cards[d.index+1] = shuffled[i]
+		d.cards[d.index+i] = shuffled[i]
 	}
 }
 
