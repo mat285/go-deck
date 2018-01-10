@@ -19,6 +19,17 @@ func New() *Deck {
 	}
 }
 
+// Custom creates a custom deck with valid cards
+func Custom(cards []*Card) *Deck {
+	for _, card := range cards {
+		Validate(card)
+	}
+	return &Deck{
+		cards: cards,
+		index: 0,
+	}
+}
+
 func getCards() []*Card {
 	cards := make([]*Card, DeckSize)
 	k := 0

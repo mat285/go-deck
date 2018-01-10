@@ -78,6 +78,14 @@ func NewCard(s Suit, v Value) *Card {
 	}
 }
 
+// Validate validates the card, non-nil with valid suit and value
+func Validate(card *Card) {
+	if card == nil {
+		panic(fmt.Sprintf("Card is nil"))
+	}
+	validate(card.Suit, card.Value)
+}
+
 func validate(s Suit, v Value) {
 	if s != Hearts && s != Spades && s != Diamonds && s != Clubs {
 		panic(fmt.Sprintf("Unknown suit %s", s))
