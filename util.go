@@ -56,18 +56,20 @@ func SetMinus(cards, sub []*Card) []*Card {
 	return ret
 }
 
-// Max returns the maximized card from the given function
-func Max(cards []*Card, compare func(i, j *Card) int) *Card {
+// Max returns the maximized card from the given function and its index
+func Max(cards []*Card, compare func(i, j *Card) int) (*Card, int) {
 	if len(cards) == 0 {
-		return nil
+		return nil, -1
 	}
 	max := cards[0]
+	idx := 0
 	for i := 0; i < len(cards); i++ {
 		if compare(cards[i], max) > 0 {
 			max = cards[i]
+			idx = i
 		}
 	}
-	return max
+	return max, idx
 }
 
 // IsRed returns if the suit is red
