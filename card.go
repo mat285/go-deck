@@ -32,7 +32,8 @@ const (
 	Clubs Suit = "Clubs"
 )
 
-var suits = [4]Suit{Hearts, Spades, Diamonds, Clubs}
+// Suits are all suits
+var Suits = [4]Suit{Hearts, Spades, Diamonds, Clubs}
 
 // Value is the value of a card
 type Value int
@@ -66,7 +67,8 @@ const (
 	King
 )
 
-var values = [13]Value{Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King}
+// Values are the values in the deck
+var Values = [13]Value{Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King}
 
 // NewCard creates a new card of the given suit
 // if the suit and value are not valid, a panic occurs

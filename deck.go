@@ -33,9 +33,9 @@ func Custom(cards []*Card) *Deck {
 func getCards() []*Card {
 	cards := make([]*Card, DeckSize)
 	k := 0
-	for i := 0; i < len(suits); i++ {
-		for j := 0; j < len(values); j++ {
-			cards[k] = NewCard(suits[i], values[j])
+	for i := 0; i < len(Suits); i++ {
+		for j := 0; j < len(Values); j++ {
+			cards[k] = NewCard(Suits[i], Values[j])
 			k++
 		}
 	}
